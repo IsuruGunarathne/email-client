@@ -1,0 +1,16 @@
+Official: isuru,isuru@gmail.com,ceo
+Official: nimal,nimal@gmial.com,coo
+Official: test,test@gmail.com,tea
+Official: testing,Testing@gmial.com,hello
+Personal: isuru,potato,isuru623@gmail.com,ceo,2000/07/23
+Official: test,email@gmail.com,hi
+Office_friend: namali,isuru2nothing@gmail.com,ceo,1999/07/23
+Official: ffuck,fufck@gmail.com,ceoOfficial: testing,testing123@gmail.com,fuckin
+Official: pop,pop@gmail.com,popa
+Official: test,fuck@gmail.com,prostitue
+Official: test,testing@gmail.com,fuck
+Official: temp,temp@gmail.com,CEO
+Office_friend: isuru,isuru@gmial.com,ceo,2022/09/12
+Office_friend: tom,tom@gmail.com,ceo,2022/12/20
+Personal: Shanuka,shaanu,shanukalakshan9817@gmail.com,ceo,1998/07/25
+Personal: tim,timmiy,isuru623@gmail.com,ceo,2000/07/25

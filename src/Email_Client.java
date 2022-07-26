@@ -767,9 +767,9 @@ public class Email_Client {
 
             switch(option){
                     case 1:
-                        System.out.println("enter <type of entry:> name, email and designation seperated by commas:");
-                        System.out.println("for Office_friend: type add birthday at the end");
-                        System.out.println("for Personal: type add nickname after the name");
+                        System.out.println("Official: <name, email, designation> seperated by commas:");
+                        System.out.println("Office_friend: <name, email, designation, birthday> seperated by commas:");
+                        System.out.println("Personal: <name, nickname, email, designation, birthday> seperated by commas:");
 
                         String head = scanner.next();
                         String data = scanner.next();

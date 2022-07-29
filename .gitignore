@@ -1,0 +1,8 @@
+# compiled files
+*.class
+
+# Text files
+*.txt
+
+# SER file for emails sent
+*.SER

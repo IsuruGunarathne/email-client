@@ -722,7 +722,7 @@ public class Email_Client {
         		
         	}
         	
-        	if (alreadySent == 0) {
+        	if (alreadySent == 0) { // email was not sent
             	BirthdayMailSender.sendMail(guyMail, BirthdaySub, greeting);
             	allMail.add(new email(guyMail,BirthdaySub,greeting,d)); // add the mail we just sent to the list of mail sent
         	}       	

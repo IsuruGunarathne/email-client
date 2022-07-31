@@ -1,3 +1,9 @@
+# bin folder
+[Bb]in
+**bin
+bin/
+/main/**/bin/
+
 # compiled files
 *.class
 

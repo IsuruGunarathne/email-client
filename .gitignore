@@ -6,3 +6,6 @@
 
 # SER file for emails sent
 *.SER
+
+# JAR files
+*.JAR

@@ -898,7 +898,10 @@ public class Email_Client {
                         int n_reciepients = file_operator.getEntries();
                         System.out.println("The number of reciepients is : "+n_reciepients);
                         break;
-                        
+                    
+                    default:
+                        System.out.println("Invalid Selection, please enter a valid selection");
+                        break;
                     	
             	}
 

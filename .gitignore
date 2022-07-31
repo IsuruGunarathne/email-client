@@ -1,8 +1,9 @@
 # bin folder
 [Bb]in
 **bin
-bin/
+bin/*.class
 /main/**/bin/
+bin
 
 # compiled files
 *.class

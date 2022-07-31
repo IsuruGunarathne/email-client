@@ -4,6 +4,7 @@
 bin/*.class
 /main/**/bin/
 bin
+bin/*
 
 # compiled files
 *.class

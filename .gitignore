@@ -1,10 +1,4 @@
-﻿# bin folder
-[Bb]in
-**bin
-bin/*.class
-/main/**/bin/
-bin
-bin/*
+﻿
 
 # compiled files
 *.class

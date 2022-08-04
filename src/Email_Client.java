@@ -813,12 +813,18 @@ public class Email_Client {
                     	
                     	String inLine = scanner.nextLine(); // this automatically jumps a line
                     	inLine = scanner.nextLine();  // so i have a new scanner to scan actual input line
-                    	
-                    	String[] inArr = inLine.split(", ");
-                    	
-                        String mail_in = inArr[0];
-                        String Subj = inArr[1];
-                        String content = inArr[2];
+                    	String mail_in,Subj,content;
+                        try {
+                            String[] inArr = inLine.split(", ");
+                            mail_in = inArr[0];
+                            Subj = inArr[1];
+                            content = inArr[2];
+                        } catch (Exception e) {
+                            System.out.println("------------------------------------------------------------------------");
+                            System.out.println("there was an error in the way you entered the details please try again");
+                            System.out.println("------------------------------------------------------------------------");
+                            break;
+                        }
 
                         String currentContent = content;
                         while (true){

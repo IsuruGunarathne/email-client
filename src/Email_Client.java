@@ -504,8 +504,14 @@ class peopleFactory{
 			break;
 		default :
 			
-			System.out.println("corrupted entry in ClientList file : " + line);
-			temp = new Official(stateVar[0],stateVar[1],stateVar[2]);
+			System.out.println("corrupted entry in ClientList file : " + line); // this is like exception handling
+            try {
+                temp = new Official(stateVar[0],stateVar[1],stateVar[2]);
+            } catch (Exception e) {
+                System.out.println("this line doesn't have enough variables to make a recipient");
+                temp = new Official("this", "is ", "Just a filler");
+            }
+			
 			// because official is like the most basic type
 			
 		}
@@ -656,7 +662,10 @@ public class Email_Client {
 		Date date = new Date();		
 		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 		String d = df.format(date);
-		System.out.println(d); // prints todays date
+        System.out.println("-------------------");
+        System.out.println("Email client");
+		System.out.println("Date: "+d); // prints todays date
+        System.out.println("-------------------");
 		String[] dateAr = d.split("/");
 		
 		for (int x = 0 ; x<numBirth; x++) {
@@ -813,12 +822,18 @@ public class Email_Client {
                     	
                     	String inLine = scanner.nextLine(); // this automatically jumps a line
                     	inLine = scanner.nextLine();  // so i have a new scanner to scan actual input line
-                    	
-                    	String[] inArr = inLine.split(", ");
-                    	
-                        String mail_in = inArr[0];
-                        String Subj = inArr[1];
-                        String content = inArr[2];
+                    	String mail_in,Subj,content;
+                        try {
+                            String[] inArr = inLine.split(", ");
+                            mail_in = inArr[0];
+                            Subj = inArr[1];
+                            content = inArr[2];
+                        } catch (Exception e) {
+                            System.out.println("------------------------------------------------------------------------");
+                            System.out.println("there was an error in the way you entered the details please try again");
+                            System.out.println("------------------------------------------------------------------------");
+                            break;
+                        }
 
                         String currentContent = content;
                         while (true){

@@ -808,6 +808,8 @@ public class Email_Client {
                     case 2:
                         // input format - email, subject, content
                     	System.out.println("enter email, subject, content seperated by commas");
+                        System.out.println("If you need to enter more lines to the content enter them bellow");
+                        System.out.println("Type zzzz once you have finished entering content");
                     	
                     	String inLine = scanner.nextLine(); // this automatically jumps a line
                     	inLine = scanner.nextLine();  // so i have a new scanner to scan actual input line
@@ -817,8 +819,6 @@ public class Email_Client {
                         String mail_in = inArr[0];
                         String Subj = inArr[1];
                         String content = inArr[2];
-                        System.out.println("If you need to enter more lines to the content enter them bellow");
-                        System.out.println("Type zzzz once you have finished entering content");
 
                         String currentContent = content;
                         while (true){

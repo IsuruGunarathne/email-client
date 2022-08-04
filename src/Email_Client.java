@@ -817,8 +817,21 @@ public class Email_Client {
                         String mail_in = inArr[0];
                         String Subj = inArr[1];
                         String content = inArr[2];
+                        System.out.println("If you need to enter more lines to the content enter them bellow");
+                        System.out.println("Type zzzz once you have finished entering content");
+
+                        String currentContent = content;
+                        while (true){
+                            inLine = scanner.nextLine();
+                            if (inLine.equals("zzzz")){
+                                break;
+                            }
+                            else{
+                                currentContent += "\n" + inLine;
+                            }
+                        }   
                         
-                        
+                        content = currentContent;
                         
                         // for testing 
                         System.out.println("address : "+mail_in);

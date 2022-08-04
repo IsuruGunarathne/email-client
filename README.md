@@ -21,14 +21,18 @@ This project uses `javax.mail.jar` and `activation.jar` as dependencies.
 
 ## Functionality
 - add recipients
-  - formats
+  - input formats
     - Official: `name`,`email`,`designation`
     - Office_friend: `name`,`email`,`designation`,`birthday`
     - Personal: `name`,`nick name`,`email`,`designation`,`birthday`
 - sending a simple email through a command
-  - format
+  - input format
     - `email`, `subject`, `content`
     - note: if content has more than one line it can be added without an issue. Just type `zzzz` after all the lines have been entered.
 - filtering and accessing recipients according to their birthday
+  - input format
+    - `YYYY`/`MM`/`DD`
 - retrieving all emails sent on a particular date
+  - input format
+    - `YYYY`/`MM`/`DD`
 - retrieveing the total number of recipients stored

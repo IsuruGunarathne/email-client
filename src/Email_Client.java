@@ -191,6 +191,26 @@ class file_operator{
         return 0;
     }
 
+    public static String[] getCred (String name){
+        String [] returnArr = new String[2];
+        try {
+            File cred_file = new File(name);
+            Scanner filScanner = new Scanner(cred_file);
+            String Username = filScanner.nextLine();
+            String Password = filScanner.nextLine();
+            returnArr[0] = Username;
+            returnArr[1] = Password;
+            
+            filScanner.close();
+
+        } catch (Exception e) {
+            //TODO: handle exception
+            System.out.println("Invalid login credentials, please check loginCredentidals.txt file");
+
+        }
+        return returnArr;
+    }
+
 }
 
 class emailSender{
@@ -662,11 +682,14 @@ public class Email_Client {
     	
     	Scanner scanner = new Scanner(System.in);
     	String file_name="clientList.txt";
+        String loginCred = "loginCredentials.txt";
+        String[] loginCredArr = file_operator.getCred(loginCred);
 
     	
     	
-		final String username = "isurujavaemailclient@gmail.com";
-		final String password = "xymavauifbyfwxdm";
+		final String username = loginCredArr[0];
+		final String password = loginCredArr[1];
+
 		String signoff = "\n\nRegards,\nIsuru Gunarathne\n(200189M - CSE 20)";
 		
 		ArrayList<email> allMail = new ArrayList<email>(); // array to keep all mail sent 

@@ -890,12 +890,14 @@ public class Email_Client {
                     		String hisBirthday = person.birthday();
                     		if (dateNeeded.equals(hisBirthday)) {
                     			System.out.println(person.getName()+" has a birthday on "+ dateNeeded);
+                                System.out.println(); // adding a blank line for clarity
                     			peopleThere +=1;
                     		}
                     	}
                     	
                     	if (peopleThere == 0 ) {
                     		System.out.println("There are no people with thier birthday on "+dateNeeded);
+                            System.out.println(); // adding a blank line for clarity
                     	}
                     	
                         break;

@@ -377,12 +377,11 @@ class emailSender{
 }
 
 interface people{
-	public void set_name(String name);
-	public String get_name();
-	public void set_email(String Email);
-	public String get_email();
-	public void set_des(String des);
-	public String get_des();
+	public void setname(String name);
+	public String getName();
+	public void setemail(String Email);
+	public String getEmail();
+
 	
 }
 
@@ -405,30 +404,30 @@ class Official implements people{
     	this.designation=des;
     }
 
-    public void set_name(String Name){
+    public void setname(String Name){
         this.name = Name;
     }
 
-    public String get_name(){
+    public String getName(){
         return this.name;
     }
 
-    public void set_email(String Email){
+    public void setemail(String Email){
 
         // check if format is correct and then set
         this.email=Email;
     }
 
-    public String get_email(){
+    public String getEmail(){
         return this.email;
     }
 
-    public void set_des(String design){
+    public void setdes(String design){
         this.designation=design;
 
     }
 
-    public String get_des(){
+    public String getdes(){
         return this.designation;
     }
 
@@ -461,16 +460,47 @@ class Office_friend extends Official implements ibirth{
     }
 }
 
-class personal_friend extends Office_friend {
+class personal_friend implements ibirth,people {
 
+    protected String name;
+    protected String email;
+    private String birthday;
 	private String nickname;
+    
 	
-    public personal_friend(String name, String email, String des, String birthday, String nick) {
-		super(name, email, des, birthday);
+    public personal_friend(String name, String email,String birthday, String nick) {
+		this.name= name;
+        this.email=email;
+        this.birthday = birthday;
 		this.nickname = nick;
 	}
     
+    public void set_birth(String date){
+        // check if format is correct
+        
+    }
+
+    public String birthday(){
+        return this.birthday;
+    }
     
+    public void setemail(String Email){
+
+        // check if format is correct and then set
+        this.email=Email;
+    }
+
+    public String getEmail() {
+    	return this.email;
+    }
+
+    public void setname(String Name){
+        this.name = Name;
+    }
+    
+    public String getName() {
+    	return this.name;
+    }
 
     public void set_nick(String S){
         this.nickname = S;
@@ -560,10 +590,10 @@ class peopleFactory{
 			break;
 			
 		case"Personal:":
-			// stored: name,nickname,email,designation,birthday
+			// stored: name,nickname,email,birthday
 			
-			//name,email,designation,birthday,nickname
-			temp = new personal_friend(stateVar[0],stateVar[2],stateVar[3],stateVar[4],stateVar[1]);
+			//name,email,birthday,nickname
+			temp = new personal_friend(stateVar[0],stateVar[2],stateVar[3],stateVar[1]);
 			
 			break;
 		default :

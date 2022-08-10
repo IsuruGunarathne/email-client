@@ -310,6 +310,70 @@ class emailSender{
         	System.out.println(e);
         }
 	}
+
+    public void sendBirthdayMail(int nBirthEmails, ArrayList<ibirth> reciepientsArrList,ArrayList<email> allMail, String d){
+        // implement the individual messages for office friends and personal friends.
+        String BirthdaySub = "Happy Birthday!";
+        String personalMsg = "Hugs and love on your birthday.\n\n-Isuru Gunarathne";
+        String OfficeFriendMsg = "Wish you a Happy Birthday.\n\n-Isuru Gunarathne";
+        emailSender BirthdayMailSender = this;
+        for (int x = 0 ; x < nBirthEmails ; x++) {
+        	ibirth guy = reciepientsArrList.get(x);
+        	String greeting;
+        	if (guy instanceof personal_friend) {
+        		greeting = personalMsg;
+        	}
+        	else {
+        		// office friends
+        		greeting = OfficeFriendMsg;
+        	}
+        	
+        	
+        	String guyMail = guy.getEmail();
+        	
+        	// if there's an email in the array sent on 
+        	// same date (d)
+        	// has the BirthdaySub subject
+        	// to the guyMail email
+        	// then don't send the birthday message, cause we already sent one.
+        	
+        	int alreadySent = 0; // set to one if a birthday message has been sent
+        	
+        	
+        	int nMail = allMail.size();
+        	for (int f = 0 ; f<nMail ; f++) {
+        		email checking = allMail.get(f);
+        		String sentAddr = checking.getRecipeints();
+        		String subj = checking.getSubject();
+        		String sentDate = checking.getDate();
+        		
+        		if (sentAddr.equals(guyMail) && subj.equals(BirthdaySub) && sentDate.equals(d)) {
+        			alreadySent += 1;
+         			break; // no need to go further, we found the mail we sent
+        		}
+        		
+        	}
+        	
+        	if (alreadySent == 0) { // email was not sent
+            	BirthdayMailSender.sendMail(guyMail, BirthdaySub, greeting);
+            	allMail.add(new email(guyMail,BirthdaySub,greeting,d)); // add the mail we just sent to the list of mail sent
+        	}       	
+
+        	
+        }
+    }
+
+    public ArrayList<ibirth> getBirthdaysToday(ArrayList<ibirth> reciepientsArrList, String[] dateAr, ArrayList<ibirth> birthdayPeople){
+        int numBirth = birthdayPeople.size();
+        for (int x = 0 ; x<numBirth; x++) {
+			String[] birthday = birthdayPeople.get(x).birthday().split("/");
+			if (birthday[1].equals(dateAr[1]) && birthday[2].equals(dateAr[2]) ) { 
+				reciepientsArrList.add(birthdayPeople.get(x));
+			}
+			
+		}
+        return reciepientsArrList;
+    }
 }
 
 interface people{
@@ -623,6 +687,8 @@ public class Email_Client {
 		// reading from the file
 		// didn't use the file handling class because the creating of objects would have 
 		// added coupling
+        // also this way i can fill 2 arrays using a single loop, 
+        // if I used a method for this, i'll have to get the allPeople array and then loop through it to get the birthdayPeople.
 		try {
             File the_File = new File(file_name);
             String line;            
@@ -655,7 +721,6 @@ public class Email_Client {
 		// now we have all the objects in an array
 		// and all the objects with birthdays in a separate array
 		
-		int numBirth = birthdayPeople.size();
 		ArrayList<ibirth> reciepientsArrList = new ArrayList<ibirth>(); // at most everyone will have birthday today
 		
 		// today's date;
@@ -667,78 +732,28 @@ public class Email_Client {
 		System.out.println("Date: "+d); // prints todays date
         System.out.println("-------------------");
 		String[] dateAr = d.split("/");
-		
-		for (int x = 0 ; x<numBirth; x++) {
-			String[] birthday = birthdayPeople.get(x).birthday().split("/");
-			if (birthday[1].equals(dateAr[1]) && birthday[2].equals(dateAr[2]) ) { 
-				reciepientsArrList.add(birthdayPeople.get(x));
-			}
-			
-		}
-		
-		// we now have an array list of ibirth objects that have birthdays today
+
+
 		
         emailSender sender1 = new emailSender(username,password,signoff); // this object handles sending normal e-mails
-        
-        // loop individually and send mail?*************************** to do
-        
-        // implement the individual messages for office friends and personal friends.
-        String BirthdaySub = "Happy Birthday!";
-        String personalMsg = "Hugs and love on your birthday.\n\n-Isuru Gunarathne";
-        String OfficeFriendMsg = "Wish you a Happy Birthday.\n\n-Isuru Gunarathne";
+                
+
         
         // different sender for birthday email (with different sign off)
         
         emailSender BirthdayMailSender = new emailSender (username,password,""); // this object handles sending birthday e-mails
+
+        
+        // getting an array of emails of people who have birthdays today
+		
+        reciepientsArrList = BirthdayMailSender.getBirthdaysToday(reciepientsArrList, dateAr, birthdayPeople);
+		
+		// we now have an array list of ibirth objects that have birthdays today
         
         int nBirthEmails = reciepientsArrList.size();
         
         // sending the mails
-        for (int x = 0 ; x < nBirthEmails ; x++) {
-        	ibirth guy = reciepientsArrList.get(x);
-        	String greeting;
-        	if (guy instanceof personal_friend) {
-        		greeting = personalMsg;
-        	}
-        	else {
-        		// office friends
-        		greeting = OfficeFriendMsg;
-        	}
-        	
-        	
-        	String guyMail = guy.getEmail();
-        	
-        	// if there's an email in the array sent on 
-        	// same date (d)
-        	// has the BirthdaySub subject
-        	// to the guyMail email
-        	// then don't send the birthday message, cause we already sent one.
-        	
-        	int alreadySent = 0; // set to one if a birthday message has been sent
-        	
-        	
-        	int nMail = allMail.size();
-        	for (int f = 0 ; f<nMail ; f++) {
-        		email checking = allMail.get(f);
-        		String sentAddr = checking.getRecipeints();
-        		String subj = checking.getSubject();
-        		String sentDate = checking.getDate();
-        		
-        		if (sentAddr.equals(guyMail) && subj.equals(BirthdaySub) && sentDate.equals(d)) {
-        			alreadySent += 1;
-         			break; // no need to go further, we found the mail we sent
-        		}
-        		
-        	}
-        	
-        	if (alreadySent == 0) { // email was not sent
-            	BirthdayMailSender.sendMail(guyMail, BirthdaySub, greeting);
-            	allMail.add(new email(guyMail,BirthdaySub,greeting,d)); // add the mail we just sent to the list of mail sent
-        	}       	
-
-        	
-        }
-        
+        BirthdayMailSender.sendBirthdayMail(nBirthEmails, reciepientsArrList, allMail,d);        
         // done, we have sent mails to the people who have birthdays today and added that to the mails send today.        
         
     	
@@ -875,12 +890,14 @@ public class Email_Client {
                     		String hisBirthday = person.birthday();
                     		if (dateNeeded.equals(hisBirthday)) {
                     			System.out.println(person.getName()+" has a birthday on "+ dateNeeded);
+                                System.out.println(); // adding a blank line for clarity
                     			peopleThere +=1;
                     		}
                     	}
                     	
                     	if (peopleThere == 0 ) {
                     		System.out.println("There are no people with thier birthday on "+dateNeeded);
+                            System.out.println(); // adding a blank line for clarity
                     	}
                     	
                         break;

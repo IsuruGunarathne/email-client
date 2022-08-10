@@ -600,10 +600,10 @@ class peopleFactory{
 			
 			System.out.println("corrupted entry in ClientList file : " + line); // this is like exception handling
             try {
-                temp = new Official(stateVar[0],stateVar[1],stateVar[2]);
+                temp = new Official(stateVar[0],stateVar[1],stateVar[2]); // try to make a new official from the input line
             } catch (Exception e) {
                 System.out.println("this line doesn't have enough variables to make a recipient");
-                temp = new Official("this", "is ", "Just a filler");
+                temp = new Official("this", "is ", "Just a filler"); // if you can't make it, make a filler object instead
             }
 			
 			// because official is like the most basic type
@@ -823,7 +823,7 @@ public class Email_Client {
                     case 1:
                         System.out.println("Official: <name, email, designation> seperated by commas:");
                         System.out.println("Office_friend: <name, email, designation, birthday> seperated by commas:");
-                        System.out.println("Personal: <name, nickname, email, designation, birthday> seperated by commas:");
+                        System.out.println("Personal: <name, nickname, email, birthday> seperated by commas:");
 
                         String head = scanner.next();
                         String data = scanner.next();

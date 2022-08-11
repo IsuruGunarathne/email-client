@@ -1084,3 +1084,8 @@ public class Email_Client {
 }
 
 // create more classes needed for the implementation (remove the  public access modifier from classes when you submit your code)
+
+
+
+// I have also uploaded all the files to github for easy reference, use the link bellow
+// https://github.com/IsuruGunarathne/email-client

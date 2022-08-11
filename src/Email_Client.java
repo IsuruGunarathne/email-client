@@ -213,6 +213,13 @@ class file_operator{
         return 0;
     }
 
+/**
+ * It takes a file name as a parameter, reads the first two lines of the file, and returns an array of
+ * strings containing the first two lines of the file
+ * 
+ * @param name the name of the file that contains the credentials
+ * @return an array of strings.
+ */
     public static String[] getCred (String name){
         String [] returnArr = new String[2];
         try {
@@ -807,7 +814,7 @@ public class Email_Client {
 
         final String username = "isurujavaemailclient@gmail.com";
 		final String password = "xymavauifbyfwxdm";
-        
+
 		String signoff = "\n\nRegards,\nIsuru Gunarathne\n(200189M - CSE 20)";
 		
 		ArrayList<email> allMail = new ArrayList<email>(); // array to keep all mail sent 

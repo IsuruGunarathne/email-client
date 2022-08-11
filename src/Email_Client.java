@@ -81,6 +81,11 @@ class file_operator{
 		entries = count_lines(name);
 	}
 
+/**
+ * It creates a file with the given name
+ * 
+ * @param name the name of the file to be created
+ */
     public static void make_file(String name){
         // creates a file with the given name
 
@@ -99,6 +104,12 @@ class file_operator{
         
     }
 
+/**
+ * It takes a file name and a string and writes the string to the file
+ * 
+ * @param name the name of the file
+ * @param text the text to be written
+ */
     public static void write(String name, String text){
         // writes given text into the given file
 
@@ -146,6 +157,11 @@ class file_operator{
 
     }
 
+/**
+ * It deletes the file with the given name
+ * 
+ * @param name the name of the file to be deleted
+ */
     public static void del_file(String name){
         // deletes the given file
         try {
@@ -165,6 +181,12 @@ class file_operator{
         }
     }
 
+/**
+ * It takes a file name as a string, and returns the number of lines in that file
+ * 
+ * @param name The name of the file to be read.
+ * @return The number of lines in the file.
+ */
     public static int count_lines(String name){
         int count = 0;
 
@@ -228,6 +250,14 @@ class emailSender{
 	
 	
 	// sending email to a batch of reciepients, 1st being To and others cc
+/**
+ * It takes an array of email addresses, a subject, and a content, and sends an email to the first
+ * address in the array, and CC's the rest
+ * 
+ * @param reciepients an array of email addresses
+ * @param subject the subject of the email
+ * @param content the body of the email
+ */
 	public void sendMail(String[] reciepients,String subject, String content) {
 
 		content+=signoff;  // addin my signoff
@@ -284,7 +314,29 @@ class emailSender{
 	}
 	
 	
-	// ending email to just one person
+	// sending email to just one person
+/**
+ * It takes in a reciepient, subject, and content, and sends an email to the reciepient with the
+ * subject and content. 
+ * 
+ * The first thing we do is add our signoff to the content. 
+ * 
+ * Then we create a properties object, and set the properties for the email. 
+ * 
+ * Then we create an authenticator object, which is used to authenticate our email. 
+ * 
+ * Then we create a session object, which is used to send the email. 
+ * 
+ * Then we create a MimeMessage object, which is used to create the email. 
+ * 
+ * Then we set the from, to, subject, and content of the email. 
+ * 
+ * Then we send the email.
+ * 
+ * @param reciepient the email address of the person you want to send the email to
+ * @param subject the subject of the email
+ * @param content the body of the email
+ */
 	public void sendMail(String reciepient,String subject, String content) {
 
 		content+=signoff;  // addin my signoff
@@ -331,6 +383,15 @@ class emailSender{
         }
 	}
 
+/**
+ * If there's no email in the array sent on the same date (d) with the BirthdaySub subject to the
+ * guyMail email, then send the birthday message
+ * 
+ * @param nBirthEmails number of birthdays on that day
+ * @param reciepientsArrList An array list of ibirth objects.
+ * @param allMail an arraylist of all the emails sent so far
+ * @param d date
+ */
     public void sendBirthdayMail(int nBirthEmails, ArrayList<ibirth> reciepientsArrList,ArrayList<email> allMail, String d){
         // implement the individual messages for office friends and personal friends.
         String BirthdaySub = "Happy Birthday!";
@@ -383,6 +444,15 @@ class emailSender{
         }
     }
 
+/**
+ * This function takes in an arraylist of people, a date array, and an arraylist of people with
+ * birthdays, and returns an arraylist of people with birthdays today
+ * 
+ * @param reciepientsArrList An ArrayList of type ibirth. This is the ArrayList that will be returned.
+ * @param dateAr an array of the current date in the format of [month, day, year]
+ * @param birthdayPeople ArrayList of objects that implement the ibirth interface.
+ * @return The method is returning an ArrayList of ibirth objects.
+ */
     public ArrayList<ibirth> getBirthdaysToday(ArrayList<ibirth> reciepientsArrList, String[] dateAr, ArrayList<ibirth> birthdayPeople){
         int numBirth = birthdayPeople.size();
         for (int x = 0 ; x<numBirth; x++) {
@@ -397,12 +467,11 @@ class emailSender{
 }
 
 interface people{
-	public void set_name(String name);
-	public String get_name();
-	public void set_email(String Email);
-	public String get_email();
-	public void set_des(String des);
-	public String get_des();
+	public void setname(String name);
+	public String getName();
+	public void setemail(String Email);
+	public String getEmail();
+
 	
 }
 
@@ -425,30 +494,30 @@ class Official implements people{
     	this.designation=des;
     }
 
-    public void set_name(String Name){
+    public void setname(String Name){
         this.name = Name;
     }
 
-    public String get_name(){
+    public String getName(){
         return this.name;
     }
 
-    public void set_email(String Email){
+    public void setemail(String Email){
 
         // check if format is correct and then set
         this.email=Email;
     }
 
-    public String get_email(){
+    public String getEmail(){
         return this.email;
     }
 
-    public void set_des(String design){
+    public void setdes(String design){
         this.designation=design;
 
     }
 
-    public String get_des(){
+    public String getdes(){
         return this.designation;
     }
 
@@ -481,16 +550,47 @@ class Office_friend extends Official implements ibirth{
     }
 }
 
-class personal_friend extends Office_friend {
+class personal_friend implements ibirth,people {
 
+    protected String name;
+    protected String email;
+    private String birthday;
 	private String nickname;
+    
 	
-    public personal_friend(String name, String email, String des, String birthday, String nick) {
-		super(name, email, des, birthday);
+    public personal_friend(String name, String email,String birthday, String nick) {
+		this.name= name;
+        this.email=email;
+        this.birthday = birthday;
 		this.nickname = nick;
 	}
     
+    public void set_birth(String date){
+        // check if format is correct
+        
+    }
+
+    public String birthday(){
+        return this.birthday;
+    }
     
+    public void setemail(String Email){
+
+        // check if format is correct and then set
+        this.email=Email;
+    }
+
+    public String getEmail() {
+    	return this.email;
+    }
+
+    public void setname(String Name){
+        this.name = Name;
+    }
+    
+    public String getName() {
+    	return this.name;
+    }
 
     public void set_nick(String S){
         this.nickname = S;
@@ -556,6 +656,12 @@ class peopleFactory{
 		return factoryName;
 	}
 	
+/**
+ * It takes a line from the file and makes a new object of the appropriate type
+ * 
+ * @param line the line of text that you want to make into a people object
+ * @return A people object
+ */
 	public people make(String line) {
 		
 		// Separating stuff for the line
@@ -580,20 +686,20 @@ class peopleFactory{
 			break;
 			
 		case"Personal:":
-			// stored: name,nickname,email,designation,birthday
+			// stored: name,nickname,email,birthday
 			
-			//name,email,designation,birthday,nickname
-			temp = new personal_friend(stateVar[0],stateVar[2],stateVar[3],stateVar[4],stateVar[1]);
+			//name,email,birthday,nickname
+			temp = new personal_friend(stateVar[0],stateVar[2],stateVar[3],stateVar[1]);
 			
 			break;
 		default :
 			
 			System.out.println("corrupted entry in ClientList file : " + line); // this is like exception handling
             try {
-                temp = new Official(stateVar[0],stateVar[1],stateVar[2]);
+                temp = new Official(stateVar[0],stateVar[1],stateVar[2]); // try to make a new official from the input line
             } catch (Exception e) {
                 System.out.println("this line doesn't have enough variables to make a recipient");
-                temp = new Official("this", "is ", "Just a filler");
+                temp = new Official("this", "is ", "Just a filler"); // if you can't make it, make a filler object instead
             }
 			
 			// because official is like the most basic type
@@ -609,6 +715,7 @@ class peopleFactory{
 class SerialHandler {
 	private String fileHandled ;
 	
+// Creating a new file if it does not exist.
 	public SerialHandler(String fileName) {
 		
 		this.fileHandled = fileName;
@@ -629,6 +736,11 @@ class SerialHandler {
 	}
 	
 	
+/**
+ * It takes an ArrayList of email objects and serializes them to a file
+ * 
+ * @param toBeSer ArrayList of email objects
+ */
 	public void SerialEmail(ArrayList<email> toBeSer) {
 		// code to store the object
 		try {
@@ -648,6 +760,11 @@ class SerialHandler {
 		
 	}
 	
+/**
+ * It reads the file, and returns an ArrayList of emails
+ * 
+ * @return An ArrayList of emails
+ */
 	public ArrayList<email> DeserialEmail() {
 		
 		// make this return an ArrayList of emails
@@ -816,7 +933,7 @@ public class Email_Client {
                     case 1:
                         System.out.println("Official: <name, email, designation> seperated by commas:");
                         System.out.println("Office_friend: <name, email, designation, birthday> seperated by commas:");
-                        System.out.println("Personal: <name, nickname, email, designation, birthday> seperated by commas:");
+                        System.out.println("Personal: <name, nickname, email, birthday> seperated by commas:");
 
                         String head = scanner.next();
                         String data = scanner.next();
@@ -990,3 +1107,8 @@ public class Email_Client {
 }
 
 // create more classes needed for the implementation (remove the  public access modifier from classes when you submit your code)
+
+
+
+// I have also uploaded all the files to github for easy reference, use the link bellow
+// https://github.com/IsuruGunarathne/email-client

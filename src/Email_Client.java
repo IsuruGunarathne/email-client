@@ -939,9 +939,9 @@ public class Email_Client {
 
             switch(option){
                     case 1:
-                        System.out.println("Official: <name, email, designation> seperated by commas:");
-                        System.out.println("Office_friend: <name, email, designation, birthday> seperated by commas:");
-                        System.out.println("Personal: <name, nickname, email, birthday> seperated by commas:");
+                        System.out.println("Official: <name,email,designation> seperated by commas:");
+                        System.out.println("Office_friend: <name,email,designation,birthday> seperated by commas:");
+                        System.out.println("Personal: <name,nickname,email,birthday> seperated by commas:");
 
                         String head = scanner.next();
                         String data = scanner.next();
@@ -971,7 +971,16 @@ public class Email_Client {
                         
                         // create and object as well
                         // making the object
-                        allPeople.add(factory1.make(in));
+                        try {
+                            allPeople.add(factory1.make(in));
+                        } catch (Exception e) {
+                            System.out.println("------------------------------------------------------------------------");
+                            System.out.println("Error occured while creating object. please check the data you entered.");
+                            System.out.println("There should be no spaces after the commas");
+                            System.out.println("Kindly delete this entry in the client list file");
+                            System.out.println("------------------------------------------------------------------------");
+                            break;
+                        }
                         
                         // note birthday for this guy will be considered the next time we run the program
                         

@@ -757,14 +757,11 @@ public class Email_Client {
     	
     	Scanner scanner = new Scanner(System.in);
     	String file_name="clientList.txt";
-        // String loginCred = "loginCredentials.txt";
-        // String[] loginCredArr = file_operator.getCred(loginCred);
+        String loginCred = "loginCredentials.txt";
+        String[] loginCredArr = file_operator.getCred(loginCred);
 
-    	// final String username = loginCredArr[0];
-		// final String password = loginCredArr[1];
-
-        final String username = "isurujavaemailclient@gmail.com";
-		final String password = "xymavauifbyfwxdm";
+    	final String username = loginCredArr[0];
+		final String password = loginCredArr[1];
 
 		String signoff = "\n\nRegards,\nIsuru Gunarathne\n(200189M - CSE 20)";
 		

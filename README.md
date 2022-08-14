@@ -1,8 +1,11 @@
 ## Getting Started
 
-This is an email client which can send emails to a list of recipients stored in a text file.
-It also keeps track of all the mail sent in a .SER file
-The folder structure follows that of a java project on vscode.
+- This is an email client which can send emails to a list of recipients stored in a text file.
+- It also keeps track of all the mail sent in a .SER file
+- Use a text file with name `loginCredentials.txt` to store the username and password.
+  - username should be in the first line.
+  - password in the second.
+- The folder structure follows that of a java project on vscode.
 
 ## Folder Structure
 
@@ -17,7 +20,8 @@ The workspace contains two folders by default, where:
 
 ## Dependency Management
 
-This project uses `javax.mail.jar` and `activation.jar` as dependencies.
+- This project uses `javax.mail.jar` and `activation.jar` as dependencies.
+- These libraries should be added as reference libraries inside the project.
 
 ## Functionality
 - add recipients
@@ -30,7 +34,7 @@ This project uses `javax.mail.jar` and `activation.jar` as dependencies.
     - `email`, `subject`, `content`
     - note: if content has more than one line it can be added without an issue. Just type `zzzz` after all the lines have been entered.
 - filtering and accessing recipients according to their birthday
-  - input format
+  - input format (note: this will consider the year as well, not just month and date)
     - `YYYY`/`MM`/`DD`
 - retrieving all emails sent on a particular date
   - input format

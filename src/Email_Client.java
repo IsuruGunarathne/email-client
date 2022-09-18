@@ -19,9 +19,10 @@ import java.util.Date;
 
 class file_operator{ 
 	
-	private static int entries=0;
     // this class makes a file with the required name
     // this also handles not creating a file if it already exists.
+	
+    private static int entries=0; // number of entries in the file
 	
 	public static int getEntries() {
 		return entries;
@@ -165,6 +166,7 @@ class file_operator{
     }
 
 /**
+ * Function to get credentials to log into the email account
  * It takes a file name as a parameter, reads the first two lines of the file, and returns an array of
  * strings containing the first two lines of the file
  * 

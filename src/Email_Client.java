@@ -612,6 +612,11 @@ class peopleFactory{
 		this.factoryName = name;
 	}
 	
+/**
+ * > This function returns the name of the factory
+ * 
+ * @return The factoryName
+ */
 	public String getName() {
 		return factoryName;
 	}
